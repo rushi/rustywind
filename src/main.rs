@@ -33,7 +33,7 @@ fn main() {
                 .help("Changes the files in place with the reorganized classes"),
         )
         .arg(
-            Arg::with_name("dry_run")
+            Arg::with_name("dry-run")
                 .long("dry-run")
                 .help("Prints out the new file content with the sorted classes to the terminal"),
         )
@@ -41,6 +41,13 @@ fn main() {
             Arg::with_name("allow-duplicates")
                 .long("allow-duplicates")
                 .help("When set, rustywind will not delete duplicated classes"),
+        )
+        .arg(
+            Arg::with_name("custom-regex")
+                .long("custom-regex")
+                .takes_value(true)
+                .help("A string that sets the regex to search for css classes,\
+                the default regex will match class= and className="),
         )
         .get_matches();
 

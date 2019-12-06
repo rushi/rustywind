@@ -54,7 +54,7 @@ fn get_starting_path_from_matches(matches: &ArgMatches) -> PathBuf {
 }
 
 fn get_write_mode_from_matches(matches: &ArgMatches) -> WriteMode {
-    match (matches.is_present("write"), matches.is_present("dry_run")) {
+    match (matches.is_present("write"), matches.is_present("dry-run")) {
         (_, true) => WriteMode::DryRun,
         (true, false) => WriteMode::ToFile,
         _ => WriteMode::ToConsole,
