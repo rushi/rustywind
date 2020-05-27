@@ -75,10 +75,8 @@ fn get_search_paths_from_starting_path(starting_path: &Path) -> Vec<PathBuf> {
     WalkBuilder::new(starting_path).build_parallel().run(|| {
         let tx = tx.clone();
         Box::new(move |result| {
-            use ignore::WalkState::*;
-
             tx.send(Message::FoundPath(result)).unwrap();
-            Continue
+            ignore::WalkState::Continue
         })
     });
 
@@ -91,6 +89,8 @@ fn get_search_paths_from_starting_path(starting_path: &Path) -> Vec<PathBuf> {
             _ => (),
         }
     }
+
+    drop(rx);
 
     paths
         .iter()
